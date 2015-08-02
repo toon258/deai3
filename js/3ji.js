@@ -1,18 +1,27 @@
 $(function() {
+	/* map */
 	$(window).load(function() {
 		var name = $(".storeName").text();
 		var url = "http://maps.google.com/maps?q=" + name;
 
 		$("#mapUrl").attr("href", url);
 	});
-});
 
+	/* params */
+	var categoryParams = decodeURI(location.search.substring(7));
+	if (categoryParams == "パン") {
+		category= "RSFST18007";
+	} else if (categoryParams == "ケーキ") {
+		category= "RSFST18005";
+	} else if (categoryParams == "クレープ") {
+		category= "RSFST18015";
+	} else if (categoryParams == "和菓子") {
+		category= "RSFST18003";
+	}
 
-/* category */
-function callApi(category) {
-}
+	console.log(categoryParams + " = " + category);
 
-(function () {
+	/* API */
 	var id;
 	var storeName;
 	var pr_short;
@@ -31,36 +40,9 @@ function callApi(category) {
         category_s: category
 	};
 
-	(function(hiki){
-		if (hiki == "パン") {
-			category= "RSFST18007";
-		} else if (hiki == "ケーキ") {
-			category= "RSFST18005";
-		} else if (hiki == "クレープ") {
-			category= "RSFST18015";
-		} else if (hiki == "和菓子") {
-			category= "RSFST18003";
-		}
-		$.getJSON(url, params, function(result) {
-			showResult(result);
-		}
-	})();
-/*
-	function callApi(hiki){
-		if (hiki == "パン") {
-			category= "RSFST18007";
-		} else if (hiki == "ケーキ") {
-			category= "RSFST18005";
-		} else if (hiki == "クレープ") {
-			category= "RSFST18015";
-		} else if (hiki == "和菓子") {
-			category= "RSFST18003";
-		}
-		$.getJSON(url, params, function(result) {
-			showResult(result);
-		});
-	}
-*/
+	$.getJSON(url, params, function(result) {
+		showResult(result);
+	});
 
 	var showResult = function(result) {
 		if (result.total_hit_count > 0) {
@@ -69,17 +51,14 @@ function callApi(category) {
 			storeName=result.rest[rnd].name;
 			pr_long=result.rest[rnd].pr.pr_long;
 			pr_short=result.rest[rnd].pr.pr_short;
-			$(".moji1").text(storeName);
-			$(".moji2").text(pr_short);
+
+			$(".storeName").html(storeName);
+			$(".pr_short").html(pr_short);
+		
 		} else {
 			alert('検索結果が見つかりませんでした。');
 		}
-.	}
-
-$(window).load(function() {
-$(".storeName").text(storeName);
+	}
 });
-
-})(jQuery);
 
 
