@@ -1,0 +1,57 @@
+body {
+	background-color: rgb(240, 240, 225);
+}
+
+.headerImg {
+	content: url("../img/header_img.png");
+	width: 100%;
+}
+/* ガチャ */
+#gachaImg {
+	content: url("../img/cacha_img.png");
+	width: 100%;
+}
+
+/* 結果 */
+#textImg {
+	content: url("../img/re_image.png");
+	position: relative;
+	right: 0;
+	left: 0;
+	width: 100%;
+}
+
+#left {
+	float: left;
+	margin-left: 50px;
+}
+
+#mapUrl {
+	float: right;
+	margin-right: 50px;
+}
+
+#storeItem {
+	position: absolute;
+	top: 720px;
+	right: 110px;
+	left: 110px;
+	word-wrap: break-word;
+}
+
+.moji1 {
+	font-size: 400%;
+	margin-bottom: 50px;
+}
+
+.moji2 {
+	font-size: 300%;
+}
+
+#returnButton {
+	content: url("../img/back_btn.png");
+}
+
+#mapButton {
+	content: url("../img/map_btn.png");
+}
